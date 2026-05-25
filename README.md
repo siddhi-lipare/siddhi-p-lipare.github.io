@@ -1,1 +1,1 @@
-# siddhi-p-lipare.github.io
+# siddhi-lipare.github.io
