@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Siddhi Pravin Lipare</title>
+<meta name="description" content="Siddhi Pravin Lipare — MS by Research student at CVIT, IIIT Hyderabad. Computer Vision, Video-Language Models, and Forensic Image Analysis." />
+<meta name="author" content="Siddhi Pravin Lipare" />
+
+<!-- Open Graph -->
+<meta property="og:title" content="Siddhi Pravin Lipare" />
+<meta property="og:description" content="MS by Research @ CVIT, IIIT Hyderabad — Computer Vision & Video-Language Models." />
+<meta property="og:image" content="siddhi-photo.jpeg" />
+<meta property="og:type" content="website" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --bg: #fbfbfa;
+    --surface: #ffffff;
+    --text: #1f2430;
+    --muted: #5b6473;
+    --faint: #8b93a1;
+    --line: #e8e8e6;
+    --accent: #2f5d62;          /* deep teal */
+    --accent-soft: #e7f0ef;
+    --accent-text: #244a4e;
+    --radius: 16px;
+    --shadow: 0 1px 2px rgba(16,24,40,.04), 0 8px 24px rgba(16,24,40,.05);
+    --max: 1080px;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  a { color: var(--accent); text-decoration: none; transition: color .15s ease; }
+  a:hover { color: #1d3d40; }
+
+  .wrap {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ---------- Layout ---------- */
+  .layout {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 56px;
+    padding: 64px 0 96px;
+  }
+
+  /* ---------- Sidebar ---------- */
+  .sidebar { position: relative; }
+  .sidebar-inner { position: sticky; top: 48px; }
+
+  .photo {
+    width: 100%;
+    aspect-ratio: 1 / 1.1;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    background: #eee;
+  }
+
+  .name {
+    font-family: "Newsreader", Georgia, serif;
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin: 22px 0 6px;
+  }
+  .role { color: var(--muted); font-size: 15px; margin: 0; }
+  .role strong { color: var(--text); font-weight: 600; }
+  .affil { color: var(--muted); font-size: 14.5px; margin: 10px 0 0; }
+  .affil a { font-weight: 500; }
+
+  .socials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 22px;
+  }
+  .social {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 12px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 500;
+    transition: all .15s ease;
+  }
+  .social:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-1px);
+  }
+  .social svg { width: 15px; height: 15px; fill: currentColor; }
+
+  .cv-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 11px 16px;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: var(--shadow);
+    transition: all .15s ease;
+  }
+  .cv-btn:hover { background: #244a4e; color: #fff; transform: translateY(-1px); }
+  .cv-btn svg { width: 16px; height: 16px; fill: currentColor; }
+
+  /* ---------- Main ---------- */
+  main { min-width: 0; }
+  section { margin-bottom: 52px; scroll-margin-top: 32px; }
+  section:last-child { margin-bottom: 0; }
+
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-text);
+    margin: 0 0 22px;
+  }
+  .eyebrow::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+  }
+
+  p { margin: 0 0 14px; }
+  p:last-child { margin-bottom: 0; }
+  .lead { font-size: 17px; color: #2b313d; }
+  .lead .hl { color: var(--accent-text); font-weight: 600; }
+
+  /* News */
+  .news { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
+  .news li {
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    gap: 16px;
+    align-items: start;
+    font-size: 15px;
+    color: var(--muted);
+  }
+  .news .date {
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--accent-text);
+    background: var(--accent-soft);
+    padding: 2px 0;
+    text-align: center;
+    border-radius: 7px;
+  }
+  .news strong { color: var(--text); font-weight: 600; }
+
+  /* Cards */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 22px 24px;
+    box-shadow: var(--shadow);
+    transition: border-color .2s ease, transform .2s ease;
+  }
+  .card + .card { margin-top: 16px; }
+  .card:hover { border-color: #d4d9d6; }
+
+  .pub-venue {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    color: var(--accent-text);
+    background: var(--accent-soft);
+    padding: 3px 10px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+  }
+  .pub-title {
+    font-family: "Newsreader", Georgia, serif;
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin: 0 0 6px;
+    color: var(--text);
+  }
+  .pub-authors { font-size: 14.5px; color: var(--muted); margin: 0 0 4px; }
+  .pub-authors .me { color: var(--text); font-weight: 600; }
+  .pub-meta { font-size: 14px; color: var(--faint); font-style: italic; margin: 0 0 12px; }
+  .pub-links { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    font-size: 12.5px;
+    font-weight: 500;
+    padding: 4px 11px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--muted);
+  }
+  .chip:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* Timeline (experience / education) */
+  .entry {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 6px 20px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .entry:first-child { padding-top: 0; }
+  .entry:last-child { border-bottom: none; padding-bottom: 0; }
+  .entry h3 {
+    font-size: 16.5px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--text);
+  }
+  .entry .org { color: var(--muted); font-size: 14.5px; }
+  .entry .org a { font-weight: 500; }
+  .entry .when {
+    font-size: 13px;
+    color: var(--faint);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    text-align: right;
+    padding-top: 2px;
+  }
+  .entry .desc {
+    grid-column: 1 / -1;
+    margin-top: 8px;
+    font-size: 14.5px;
+    color: var(--muted);
+  }
+  .entry .desc ul { margin: 0; padding-left: 18px; }
+  .entry .desc li { margin-bottom: 5px; }
+  .entry .desc li:last-child { margin-bottom: 0; }
+  .entry .desc a { font-weight: 500; }
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .03em;
+    text-transform: uppercase;
+    color: var(--accent-text);
+    background: var(--accent-soft);
+    padding: 1px 8px;
+    border-radius: 5px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+
+  /* Projects grid */
+  .projects { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .proj { padding: 20px 22px; }
+  .proj h3 {
+    font-size: 16px; font-weight: 600; margin: 0 0 4px; color: var(--text);
+  }
+  .proj .pwhen { font-size: 12.5px; color: var(--faint); margin: 0 0 10px; }
+  .proj p { font-size: 14px; color: var(--muted); margin: 0 0 12px; }
+  .proj .pub-links { margin-top: auto; }
+
+  /* Honors */
+  .honors { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+  .honors li {
+    font-size: 15px;
+    color: var(--muted);
+    padding-left: 22px;
+    position: relative;
+  }
+  .honors li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 10px;
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .honors strong { color: var(--text); font-weight: 600; }
+
+  /* Skills */
+  .skills { display: grid; gap: 12px; }
+  .skill-row { display: grid; grid-template-columns: 150px 1fr; gap: 14px; align-items: start; }
+  .skill-row .label { font-size: 13.5px; font-weight: 600; color: var(--text); padding-top: 4px; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+  .skill-tags span {
+    font-size: 13px;
+    color: var(--muted);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    padding: 4px 11px;
+    border-radius: 8px;
+  }
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 28px 0 40px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--faint);
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 860px) {
+    .layout {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      padding: 40px 0 64px;
+    }
+    .sidebar-inner { position: static; }
+    .sidebar {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 22px;
+      align-items: start;
+    }
+    .photo { aspect-ratio: 1 / 1.1; }
+    .name { font-size: 26px; margin-top: 0; }
+    .socials { grid-column: 1 / -1; }
+    .cv-btn { grid-column: 1 / -1; }
+    .projects { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 520px) {
+    .wrap { padding: 0 20px; }
+    .sidebar { grid-template-columns: 1fr; }
+    .photo { max-width: 200px; }
+    .news li { grid-template-columns: 60px 1fr; gap: 12px; }
+    .skill-row { grid-template-columns: 1fr; gap: 6px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="layout">
+
+    <!-- ============ SIDEBAR ============ -->
+    <aside class="sidebar">
+      <div class="sidebar-inner">
+        <img class="photo" src="siddhi-photo.jpeg" alt="Siddhi Pravin Lipare" />
+        <h1 class="name">Siddhi Pravin&nbsp;Lipare</h1>
+        <p class="role"><strong>MS by Research</strong>, CSE</p>
+        <p class="affil">
+          <a href="https://cvit.iiit.ac.in/" target="_blank" rel="noopener">CVIT</a>,
+          IIIT Hyderabad
+        </p>
+
+        <div class="socials">
+          <a class="social" href="mailto:siddhi.l@research.iiit.ac.in" aria-label="Email">
+            <svg viewBox="0 0 24 24"><path d="M2 4h20c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H2c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zm10 7L2.5 5.5h19L12 11zm0 2.2L2 7.3V18h20V7.3l-10 5.9z"/></svg>
+            Email
+          </a>
+          <a class="social" href="https://scholar.google.com/citations?user=Du2mAdsAAAAJ&hl=en" target="_blank" rel="noopener" aria-label="Google Scholar">
+            <svg viewBox="0 0 24 24"><path d="M12 2L1 8l11 6 9-4.91V17h2V8L12 2zM5 13.18v3.27c0 1.65 3.13 3.05 7 3.05s7-1.4 7-3.05v-3.27l-7 3.82-7-3.82z"/></svg>
+            Scholar
+          </a>
+          <a class="social" href="https://github.com/siddhi-lipare" target="_blank" rel="noopener" aria-label="GitHub">
+            <svg viewBox="0 0 24 24"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 016 0C18 5 19 5.3 19 5.3c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+            GitHub
+          </a>
+          <a class="social" href="https://www.linkedin.com/in/siddhi-lipare/" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3V9zm6 0h3.8v1.7h.05c.53-1 1.83-2.05 3.76-2.05C20.4 8.65 22 10.5 22 14v7h-4v-6.2c0-1.5 0-3.4-2.07-3.4-2.07 0-2.39 1.6-2.39 3.3V21H9V9z"/></svg>
+            LinkedIn
+          </a>
+        </div>
+
+        <a class="cv-btn" href="https://drive.google.com/file/d/1tBLAcr26p4sIHTdvlJDIkK_c8XQPtZzS/view?usp=sharing" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M12 16l-5-5h3V4h4v7h3l-5 5zm-7 2h14v2H5v-2z"/></svg>
+          Curriculum Vitae
+        </a>
+      </div>
+    </aside>
+
+    <!-- ============ MAIN ============ -->
+    <main>
+
+      <!-- About -->
+      <section id="about">
+        <p class="lead">
+          I'm an <span class="hl">MS by Research</span> scholar at the Centre for Visual
+          Information &amp; Technology (CVIT), IIIT Hyderabad, working on
+          <span class="hl">Computer Vision</span>, <span class="hl">Video-Language Models</span>,
+          and <span class="hl">Forensic Image Analysis</span>.
+        </p>
+        <p>
+          My research centers on making multimodal models more structurally aware and
+          contextually faithful — from controllable video captioning to detecting subtle
+          image manipulations. I previously earned a B.S. in Data Science &amp; Engineering
+          from IISER Bhopal and joined CVIT as an Applied Research Fellow.
+        </p>
+      </section>
+
+      <!-- News -->
+      <section id="news">
+        <h2 class="eyebrow">News</h2>
+        <ul class="news">
+          <li>
+            <span class="date">2026</span>
+            <span>🎉 Our paper <strong>“RoadTones: Tone Controllable Text Generation from Road Event Videos”</strong> was accepted to the <strong>CVPR 2026 Findings</strong> track!</span>
+          </li>
+          <li>
+            <span class="date">2025</span>
+            <span>📌 Presented a poster on hybrid frequency–spatial features for image tampering detection at the <strong>CV4Science Workshop, CVPR 2025</strong>.</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Publications -->
+      <section id="publications">
+        <h2 class="eyebrow">Publications</h2>
+
+        <article class="card">
+          <span class="pub-venue">CVPR 2026 · Findings</span>
+          <h3 class="pub-title">RoadTones: Tone Controllable Text Generation from Road Event Videos</h3>
+          <p class="pub-authors"><span class="me">Siddhi Pravin Lipare</span>, et al.</p>
+          <p class="pub-meta">IEEE/CVF Conference on Computer Vision and Pattern Recognition (Findings), 2026</p>
+          <p style="font-size:14.5px;color:var(--muted);margin:0 0 12px;">
+            A dataset–model–evaluation framework for fine-grained, tone-controllable
+            road-video captioning, backed by a 51k tone-aware dataset built with a scalable,
+            LLM-driven generation pipeline.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="pub-venue">CV4Science Workshop · CVPR 2025</span>
+          <h3 class="pub-title">Improving Image Tampering Detection: A Hybrid Approach Using Frequency and Spatial Domain Features</h3>
+          <p class="pub-authors"><span class="me">Siddhi Pravin Lipare</span></p>
+          <p class="pub-meta">Poster, CV4Science Workshop, CVPR 2025</p>
+          <p style="font-size:14.5px;color:var(--muted);margin:0;">
+            A forensic segmentation approach using the Discrete Wavelet Transform to capture
+            dual frequency–spatial cues for more precise localization of tampered regions.
+          </p>
+        </article>
+      </section>
+
+      <!-- Experience -->
+      <section id="experience">
+        <h2 class="eyebrow">Experience</h2>
+
+        <div class="entry">
+          <div>
+            <h3>Applied Research Fellow</h3>
+            <p class="org"><a href="https://cvit.iiit.ac.in/" target="_blank" rel="noopener">CVIT, IIIT Hyderabad</a></p>
+          </div>
+          <div class="when">May 2025 – Dec 2025</div>
+          <div class="desc">
+            <ul>
+              <li>Designed <strong>RoadTones</strong>, a framework for tone-controllable road-video captioning (accepted at CVPR 2026 Findings).</li>
+              <li>Curated a <strong>51k tone-aware dataset</strong> via a scalable, LLM-driven generation pipeline.</li>
+              <li>Built an evaluation stack with new metrics for factual grounding and tone alignment, benchmarking 10 state-of-the-art Video-Language Models.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="entry">
+          <div>
+            <h3>Research Intern</h3>
+            <p class="org">Indian Institute of Technology, Madras</p>
+          </div>
+          <div class="when">May 2024 – Jul 2024</div>
+          <div class="desc">
+            <ul>
+              <li>Explored <strong>super-resolution</strong> architectures for 3D medical imaging to enhance z-axis resolution across CT and MRI planes.</li>
+              <li>Applied GANs, diffusion models, and NeRF to improve diagnostic clarity.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Education -->
+      <section id="education">
+        <h2 class="eyebrow">Education</h2>
+
+        <div class="entry">
+          <div>
+            <h3>MS by Research, Computer Science &amp; Engineering</h3>
+            <p class="org">IIIT Hyderabad — CVIT</p>
+          </div>
+          <div class="when">Jan 2026 – Present</div>
+        </div>
+
+        <div class="entry">
+          <div>
+            <h3>B.S. in Data Science &amp; Engineering</h3>
+            <p class="org">IISER Bhopal</p>
+          </div>
+          <div class="when">2021 – 2025</div>
+        </div>
+      </section>
+
+      <!-- Projects -->
+      <section id="projects">
+        <h2 class="eyebrow">Selected Projects</h2>
+        <div class="projects">
+
+          <article class="card proj">
+            <h3>Image Tampering Detector</h3>
+            <p class="pwhen">B.S. Thesis · IISER Bhopal · 2025</p>
+            <p>Forensic segmentation pipeline that integrates the Discrete Wavelet Transform over transformer baselines (SAFIRE, DocTamper) for higher accuracy with fewer training epochs.</p>
+            <div class="pub-links">
+              <a class="chip" href="https://drive.google.com/file/d/1HMLEEoh75sjb4Bc4TVN9rPuxLUuCUKVE/view?usp=sharing" target="_blank" rel="noopener">Thesis ↗</a>
+            </div>
+          </article>
+
+          <article class="card proj">
+            <h3>Monocular Depth in Dim Light</h3>
+            <p class="pwhen">IISER Bhopal · 2024</p>
+            <p>Added denoising and deblurring layers ahead of a DepthAnything&nbsp;V2 backbone to stabilize depth estimation on noisy, blurry nighttime footage.</p>
+            <div class="pub-links">
+              <a class="chip" href="https://drive.google.com/file/d/1ERTdRW-wDsElGBJ6emP9XiSGTptlruYz/view?usp=sharing" target="_blank" rel="noopener">Report ↗</a>
+            </div>
+          </article>
+
+          <article class="card proj">
+            <h3>3D Medical Super-Resolution</h3>
+            <p class="pwhen">IIT Madras · 2024</p>
+            <p>Investigated GAN-, diffusion-, and NeRF-based super-resolution to enhance z-axis resolution in CT and MRI volumes for sharper diagnostics.</p>
+            <div class="pub-links">
+              <a class="chip" href="https://drive.google.com/file/d/1jf4YNha8EieQA4jXeeZOMBqztARpo27_/view" target="_blank" rel="noopener">Report ↗</a>
+            </div>
+          </article>
+
+          <article class="card proj">
+            <h3>ICU Mortality Prediction</h3>
+            <p class="pwhen">IISER Bhopal · 2023</p>
+            <p>Binary-classification pipeline using classical supervised ML to flag critical mortality indicators for heart-failure patients in the ICU.</p>
+            <div class="pub-links">
+              <a class="chip" href="https://github.com/siddhi-lipare/Mortality-Rate" target="_blank" rel="noopener">GitHub ↗</a>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- Honors -->
+      <section id="honors">
+        <h2 class="eyebrow">Honors &amp; Awards</h2>
+        <ul class="honors">
+          <li><strong>CVPR 2026 Findings</strong> — paper acceptance (RoadTones).</li>
+          <li><strong>ISRO Robotics Challenge 2024</strong> — Top 30 teams out of 400 nationwide.</li>
+          <li><strong>IEEE CAS Student Design Competition 2022</strong> — 3rd place, Asia–Pacific region.</li>
+        </ul>
+      </section>
+
+      <!-- Skills -->
+      <section id="skills">
+        <h2 class="eyebrow">Technical Skills</h2>
+        <div class="skills">
+          <div class="skill-row">
+            <span class="label">Languages</span>
+            <div class="skill-tags">
+              <span>Python</span><span>C/C++</span><span>JavaScript</span><span>MATLAB</span><span>R</span><span>SQL</span>
+            </div>
+          </div>
+          <div class="skill-row">
+            <span class="label">Frameworks</span>
+            <div class="skill-tags">
+              <span>PyTorch</span><span>TensorFlow</span><span>Keras</span><span>OpenCV</span><span>HuggingFace</span>
+            </div>
+          </div>
+          <div class="skill-row">
+            <span class="label">Tools</span>
+            <div class="skill-tags">
+              <span>Docker</span><span>Linux</span><span>Git</span><span>Firebase</span><span>LaTeX</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <footer>
+    © 2026 Siddhi Pravin Lipare · Built with care, hosted on GitHub Pages
+  </footer>
+</div>
+</body>
+</html>
